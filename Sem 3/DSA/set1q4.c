@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <math.h>
 // Structure to represent a term in the polynomial
 typedef struct
 {
