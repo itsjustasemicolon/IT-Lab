@@ -21,15 +21,17 @@ int evaluatePolynomial(Term polynomial[], int numTerms, int x)
 int main()
 {
     // Example usage
-    Term polynomial[] = {
-        {2, 3},  // 2x^3
-        {-4, 2}, // -4x^2
-        {3, 1}   // 3x^1
-    };
-    int numTerms = sizeof(polynomial) / sizeof(polynomial[0]);
-    int x = 2;
-    int result = evaluatePolynomial(polynomial, numTerms, x);
-    printf("Result: %d\n", result);
-
+    Term polynomial[100];
+    int result, x, num;
+    printf("Enter the number of terms : ");
+    scanf(%d,&num);
+    printf("Enter the terms of the polynomial: ");
+    for(int i = 0;i<num;i++)
+        {
+            scanf("%d %d",&poly[i].coefficient,&poly[i].exponent);
+        }
+    printf("Enter the value of x: ");
+    scanf("%d",&x);
+    printf("Result : %d\n",result);
     return 0;
 }
