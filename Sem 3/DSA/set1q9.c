@@ -1,4 +1,4 @@
-    /* 
+/* 
 In the provided C code, `x` represents the value at which the polynomial is evaluated.
 
 ### Explanation:
