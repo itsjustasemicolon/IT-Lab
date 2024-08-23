@@ -1,5 +1,5 @@
 #include <iostream>
-
+using namespace std;
 class Rectangle
 {
 private:
@@ -26,10 +26,10 @@ int main()
     Rectangle rect3(2, 8);
     Rectangle rect4(7, 2);
 
-    std::cout << "Area of Rectangle 1: " << rect1.area() << std::endl;
-    std::cout << "Area of Rectangle 2: " << rect2.area() << std::endl;
-    std::cout << "Area of Rectangle 3: " << rect3.area() << std::endl;
-    std::cout << "Area of Rectangle 4: " << rect4.area() << std::endl;
+    cout << "Area of Rectangle 1: " << rect1.area() << endl;
+    cout << "Area of Rectangle 2: " << rect2.area() << endl;
+    cout << "Area of Rectangle 3: " << rect3.area() << endl;
+    cout << "Area of Rectangle 4: " << rect4.area() << endl;
 
     return 0;
 }
