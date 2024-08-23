@@ -43,7 +43,8 @@ int main()
 }*/
 
 #include <iostream>
-#include <cmath>
+#include <math.h>
+using namespace std;
 
 class Point3D
 {
@@ -74,7 +75,7 @@ Point3D::Point3D(double x, double y, double z)
 
 double Point3D::distance(Point3D other)
 {
-    return std::sqrt(std::pow(x - other.x, 2) + std::pow(y - other.y, 2) + std::pow(z - other.z, 2));
+    return sqrt(pow(x - other.x, 2) + pow(y - other.y, 2) + pow(z - other.z, 2));
 }
 
 int main()
@@ -82,7 +83,7 @@ int main()
     Point3D p1(1, 2, 3);
     Point3D p2(3, 6, 9);
 
-    std::cout << "Distance = " << p1.distance(p2) << "\n";
+    cout << "Distance = " << p1.distance(p2) << "\n";
 
     return 0;
 }
