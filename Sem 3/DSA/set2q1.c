@@ -7,7 +7,6 @@ struct Node
     struct Node *next;
 };
 
-// Function to create a new node
 struct Node *createNode(int data)
 {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
@@ -16,7 +15,6 @@ struct Node *createNode(int data)
     return newNode;
 }
 
-// Function to insert a node at a specified position
 void insertNode(struct Node **head, int data, int position)
 {
     struct Node *newNode = createNode(data);
@@ -41,7 +39,6 @@ void insertNode(struct Node **head, int data, int position)
     temp->next = newNode;
 }
 
-// Function to delete a node from a specified position
 void deleteNode(struct Node **head, int position)
 {
     if (*head == NULL)
@@ -70,7 +67,6 @@ void deleteNode(struct Node **head, int position)
     temp->next = next;
 }
 
-// Function to count the number of nodes in the linked list
 int countNodes(struct Node *head)
 {
     int count = 0;
@@ -83,7 +79,6 @@ int countNodes(struct Node *head)
     return count;
 }
 
-// Function to reverse print the linked list
 void reversePrint(struct Node *head)
 {
     if (head == NULL)
@@ -94,7 +89,6 @@ void reversePrint(struct Node *head)
     printf("%d ", head->data);
 }
 
-// Function to reverse the linked list
 void reverseList(struct Node **head)
 {
     struct Node *prev = NULL;
@@ -110,7 +104,6 @@ void reverseList(struct Node **head)
     *head = prev;
 }
 
-// Function to print the linked list
 void printList(struct Node *head)
 {
     struct Node *temp = head;
@@ -122,7 +115,6 @@ void printList(struct Node *head)
     printf("NULL\n");
 }
 
-// Main function
 int main()
 {
     struct Node *head = NULL;
