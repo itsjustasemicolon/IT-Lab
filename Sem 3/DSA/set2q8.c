@@ -2,21 +2,18 @@
 #include <stdlib.h>
 #define MAX 100
 
-// Array-based circular queue structure
 struct CircularArrayQueue
 {
     int front, rear, size;
     int array[MAX];
 };
 
-// Node structure for linked list-based circular queue
 struct Node
 {
     int data;
     struct Node *next;
 };
 
-// Linked list-based circular queue structure
 struct CircularLinkedListQueue
 {
     struct Node *front;
@@ -24,7 +21,6 @@ struct CircularLinkedListQueue
     int size;
 };
 
-// Function prototypes for array-based circular queue
 void initCircularArrayQueue(struct CircularArrayQueue *q);
 int isFullCircularArray(struct CircularArrayQueue *q);
 int isEmptyCircularArray(struct CircularArrayQueue *q);
@@ -33,7 +29,6 @@ int dequeueCircularArray(struct CircularArrayQueue *q);
 int sizeCircularArray(struct CircularArrayQueue *q);
 void displayCircularArrayQueue(struct CircularArrayQueue *q);
 
-// Function prototypes for linked list-based circular queue
 struct Node *createNode(int data);
 void initCircularLinkedListQueue(struct CircularLinkedListQueue *q);
 int isEmptyCircularLinkedList(struct CircularLinkedListQueue *q);
@@ -42,14 +37,12 @@ int dequeueCircularLinkedList(struct CircularLinkedListQueue *q);
 int sizeCircularLinkedList(struct CircularLinkedListQueue *q);
 void displayCircularLinkedListQueue(struct CircularLinkedListQueue *q);
 
-// Main function
 int main()
 {
     struct CircularArrayQueue arrayQueue;
     struct CircularLinkedListQueue linkedListQueue;
     int choice, element, method;
 
-    // Initialize both queues
     initCircularArrayQueue(&arrayQueue);
     initCircularLinkedListQueue(&linkedListQueue);
 
@@ -166,7 +159,6 @@ int main()
     return 0;
 }
 
-// Array-based circular queue functions
 void initCircularArrayQueue(struct CircularArrayQueue *q)
 {
     q->front = -1;
@@ -192,7 +184,7 @@ void enqueueCircularArray(struct CircularArrayQueue *q, int data)
         return;
     }
     if (q->front == -1)
-    { // Insert the first element
+    { 
         q->front = 0;
     }
     q->rear = (q->rear + 1) % MAX;
@@ -210,7 +202,7 @@ int dequeueCircularArray(struct CircularArrayQueue *q)
     }
     int data = q->array[q->front];
     if (q->front == q->rear)
-    { // Only one element in the queue
+    { 
         q->front = q->rear = -1;
     }
     else
@@ -243,7 +235,6 @@ void displayCircularArrayQueue(struct CircularArrayQueue *q)
     printf("%d\n", q->array[i]);
 }
 
-// Linked list-based circular queue functions
 struct Node *createNode(int data)
 {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
@@ -269,13 +260,13 @@ void enqueueCircularLinkedList(struct CircularLinkedListQueue *q, int data)
     if (isEmptyCircularLinkedList(q))
     {
         q->front = q->rear = newNode;
-        q->rear->next = q->front; // Circular link
+        q->rear->next = q->front; 
     }
     else
     {
         q->rear->next = newNode;
         q->rear = newNode;
-        q->rear->next = q->front; // Circular link
+        q->rear->next = q->front; 
     }
     q->size++;
     printf("%d inserted into queue\n", data);
@@ -297,7 +288,7 @@ int dequeueCircularLinkedList(struct CircularLinkedListQueue *q)
     else
     {
         q->front = q->front->next;
-        q->rear->next = q->front; // Circular link
+        q->rear->next = q->front; 
     }
     free(temp);
     q->size--;
