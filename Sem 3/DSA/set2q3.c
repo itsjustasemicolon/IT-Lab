@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define the structure of a node in the doubly linked list
 struct Node
 {
     int data;
@@ -9,7 +8,6 @@ struct Node
     struct Node *next;
 };
 
-// Function to create a new node
 struct Node *createNode(int data)
 {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
@@ -19,7 +17,6 @@ struct Node *createNode(int data)
     return newNode;
 }
 
-// Function to insert a node at a specified position
 void insertNode(struct Node **head, int data, int position)
 {
     struct Node *newNode = createNode(data);
@@ -53,7 +50,6 @@ void insertNode(struct Node **head, int data, int position)
     newNode->prev = temp;
 }
 
-// Function to delete a node from a specified position
 void deleteNode(struct Node **head, int position)
 {
     if (*head == NULL)
@@ -90,7 +86,6 @@ void deleteNode(struct Node **head, int position)
     free(toDelete);
 }
 
-// Function to count the number of nodes in the linked list
 int countNodes(struct Node *head)
 {
     int count = 0;
@@ -103,7 +98,6 @@ int countNodes(struct Node *head)
     return count;
 }
 
-// Function to reverse print the linked list
 void reversePrint(struct Node *head)
 {
     struct Node *temp = head;
@@ -123,7 +117,6 @@ void reversePrint(struct Node *head)
     printf("\n");
 }
 
-// Function to reverse the linked list
 void reverseList(struct Node **head)
 {
     struct Node *temp = NULL;
@@ -141,7 +134,6 @@ void reverseList(struct Node **head)
     }
 }
 
-// Function to print the linked list
 void printList(struct Node *head)
 {
     struct Node *temp = head;
@@ -153,7 +145,6 @@ void printList(struct Node *head)
     printf("NULL\n");
 }
 
-// Main function
 int main()
 {
     struct Node *head = NULL;
