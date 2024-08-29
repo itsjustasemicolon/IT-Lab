@@ -2,21 +2,18 @@
 #include <stdlib.h>
 #define MAX 100
 
-// Array-based queue structure
 struct ArrayQueue
 {
     int front, rear, size;
     int array[MAX];
 };
 
-// Node structure for linked list-based queue
 struct Node
 {
     int data;
     struct Node *next;
 };
 
-// Linked list-based queue structure
 struct LinkedListQueue
 {
     struct Node *front;
@@ -24,7 +21,6 @@ struct LinkedListQueue
     int size;
 };
 
-// Function prototypes for array-based queue
 void initArrayQueue(struct ArrayQueue *q);
 int isFullArray(struct ArrayQueue *q);
 int isEmptyArray(struct ArrayQueue *q);
@@ -33,7 +29,6 @@ int dequeueArray(struct ArrayQueue *q);
 int sizeArray(struct ArrayQueue *q);
 void displayArrayQueue(struct ArrayQueue *q);
 
-// Function prototypes for linked list-based queue
 struct Node *createNode(int data);
 void initLinkedListQueue(struct LinkedListQueue *q);
 int isEmptyLinkedList(struct LinkedListQueue *q);
@@ -42,14 +37,12 @@ int dequeueLinkedList(struct LinkedListQueue *q);
 int sizeLinkedList(struct LinkedListQueue *q);
 void displayLinkedListQueue(struct LinkedListQueue *q);
 
-// Main function
 int main()
 {
     struct ArrayQueue arrayQueue;
     struct LinkedListQueue linkedListQueue;
     int choice, element, method;
 
-    // Initialize both queues
     initArrayQueue(&arrayQueue);
     initLinkedListQueue(&linkedListQueue);
 
@@ -166,7 +159,6 @@ int main()
     return 0;
 }
 
-// Array-based queue functions
 void initArrayQueue(struct ArrayQueue *q)
 {
     q->front = 0;
@@ -231,7 +223,6 @@ void displayArrayQueue(struct ArrayQueue *q)
     printf("\n");
 }
 
-// Linked list-based queue functions
 struct Node *createNode(int data)
 {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
