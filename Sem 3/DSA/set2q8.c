@@ -282,7 +282,7 @@ int dequeueCircularLinkedList(struct CircularLinkedListQueue *q)
     int data = q->front->data;
     struct Node *temp = q->front;
     if (q->front == q->rear)
-    { // Only one element in the queue
+    { 
         q->front = q->rear = NULL;
     }
     else
