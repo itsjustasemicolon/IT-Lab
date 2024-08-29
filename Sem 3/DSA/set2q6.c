@@ -4,7 +4,6 @@
 
 #define MAX 100
 
-// Structure for stack
 struct Stack
 {
     int top;
@@ -12,7 +11,6 @@ struct Stack
     int *array;
 };
 
-// Function to create a stack of given capacity
 struct Stack *createStack(int capacity)
 {
     struct Stack *stack = (struct Stack *)malloc(sizeof(struct Stack));
@@ -22,19 +20,16 @@ struct Stack *createStack(int capacity)
     return stack;
 }
 
-// Function to check if the stack is empty
 int isEmpty(struct Stack *stack)
 {
     return stack->top == -1;
 }
 
-// Function to push an element onto the stack
 void push(struct Stack *stack, int item)
 {
     stack->array[++stack->top] = item;
 }
 
-// Function to pop an element from the stack
 int pop(struct Stack *stack)
 {
     if (isEmpty(stack))
@@ -42,21 +37,17 @@ int pop(struct Stack *stack)
     return stack->array[stack->top--];
 }
 
-// Function to evaluate a postfix expression
 int evaluatePostfix(char *exp)
 {
     struct Stack *stack = createStack(strlen(exp));
     int i;
 
-    // Scan all characters in the postfix expression
     for (i = 0; exp[i]; ++i)
     {
-        // If the character is a number, push it onto the stack
         if (isdigit(exp[i]))
         {
-            push(stack, exp[i] - '0'); // Convert character to integer
+            push(stack, exp[i] - '0'); 
         }
-        // If the character is an operator, pop two elements from the stack, apply the operator, and push the result back onto the stack
         else
         {
             int val1 = pop(stack);
@@ -81,15 +72,12 @@ int evaluatePostfix(char *exp)
     return pop(stack);
 }
 
-// Main function
 int main()
 {
     char exp[MAX];
     printf("Enter postfix expression: ");
     fgets(exp, MAX, stdin);
-    exp[strcspn(exp, "\n")] = 0; // Remove the newline character from input
-
+    exp[strcspn(exp, "\n")] = 0; 
     printf("Postfix expression evaluates to: %d\n", evaluatePostfix(exp));
-
     return 0;
 }
