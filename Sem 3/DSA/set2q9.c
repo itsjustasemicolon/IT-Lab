@@ -3,14 +3,12 @@
 
 #define MAX 100
 
-// Stack structure
 typedef struct
 {
     int top;
     int array[MAX];
 } Stack;
 
-// Function prototypes
 void initStack(Stack *s);
 int isEmpty(Stack *s);
 int isFull(Stack *s);
@@ -19,27 +17,23 @@ int pop(Stack *s);
 int peek(Stack *s);
 void displayStack(Stack *s);
 
-// Queue structure using two stacks
 typedef struct
 {
     Stack input;
     Stack output;
 } Queue;
 
-// Function prototypes for queue operations
 void initQueue(Queue *q);
 void enqueue(Queue *q, int data);
 int dequeue(Queue *q);
 void displayQueue(Queue *q);
 
-// Main function
 int main()
 {
     Queue q;
     int choice, element;
 
-    // Initialize the queue
-    initQueue(&q);
+   initQueue(&q);
 
     while (1)
     {
@@ -83,7 +77,6 @@ int main()
     return 0;
 }
 
-// Stack functions
 void initStack(Stack *s)
 {
     s->top = -1;
@@ -144,7 +137,6 @@ void displayStack(Stack *s)
     printf("\n");
 }
 
-// Queue functions using two stacks
 void initQueue(Queue *q)
 {
     initStack(&q->input);
@@ -176,7 +168,6 @@ void displayQueue(Queue *q)
         return;
     }
 
-    // Display elements from input stack (reverse order)
     printf("Queue elements: ");
     Stack temp;
     initStack(&temp);
@@ -191,14 +182,12 @@ void displayQueue(Queue *q)
         printf("%d ", pop(&temp));
     }
 
-    // Display elements from output stack
     while (!isEmpty(&q->output))
     {
         printf("%d ", pop(&q->output));
     }
     printf("\n");
 
-    // Restore the original state of the input stack
     while (!isEmpty(&temp))
     {
         push(&q->input, pop(&temp));
