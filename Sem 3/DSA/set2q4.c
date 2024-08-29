@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Define the structure of a node
 struct Node
 {
     int data;
     struct Node *next;
 };
 
-// Function to create a new node
 struct Node *createNode(int data)
 {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
@@ -17,13 +15,11 @@ struct Node *createNode(int data)
     return newNode;
 }
 
-// Function to check if the stack is empty
 int isEmpty(struct Node *top)
 {
     return top == NULL;
 }
 
-// Function to push an element onto the stack
 void push(struct Node **top, int data)
 {
     struct Node *newNode = createNode(data);
@@ -32,7 +28,6 @@ void push(struct Node **top, int data)
     printf("%d pushed onto stack\n", data);
 }
 
-// Function to pop an element from the stack
 int pop(struct Node **top)
 {
     if (isEmpty(*top))
@@ -47,7 +42,6 @@ int pop(struct Node **top)
     return popped;
 }
 
-// Function to peek the top element of the stack
 int peek(struct Node *top)
 {
     if (isEmpty(top))
@@ -58,7 +52,6 @@ int peek(struct Node *top)
     return top->data;
 }
 
-// Function to display the stack
 void display(struct Node *top)
 {
     if (isEmpty(top))
@@ -76,7 +69,6 @@ void display(struct Node *top)
     printf("NULL\n");
 }
 
-// Main function
 int main()
 {
     struct Node *top = NULL;
