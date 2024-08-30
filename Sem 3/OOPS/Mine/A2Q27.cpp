@@ -10,7 +10,7 @@ class Book
 private:
     string isbn;
     string title;
-    string authors[3]; // Assuming a maximum of 3 authors per book for simplicity
+    string authors[3]; 
     double price;
 
 public:
@@ -58,7 +58,7 @@ public:
 class BookStore
 {
 private:
-    map<string, pair<Book, int>> books; // Map of ISBN to pair of Book object and number of copies
+    map<string, pair<Book, int>> books; 
 
 public:
     void addBook(const Book &book, int copies)
@@ -90,7 +90,7 @@ public:
         {
             return books.at(isbn).second;
         }
-        return 0; // If the book is not found
+        return 0;
     }
 
     double totalPrice() const
@@ -115,29 +115,24 @@ public:
 
 int main()
 {
-    // Creating some books
     string authors1[3] = {"Author A", "Author B", "Author C"};
     Book book1("ISBN123", "Book Title 1", authors1, 250.0);
 
     string authors2[3] = {"Author X", "Author Y", "Author Z"};
     Book book2("ISBN456", "Book Title 2", authors2, 300.0);
 
-    string authors3[3] = {"Author P", "Author Q", ""}; // Only 2 authors
+    string authors3[3] = {"Author P", "Author Q", ""}; 
     Book book3("ISBN789", "Book Title 3", authors3, 150.0);
 
-    // Creating a bookstore
     BookStore store;
 
-    // Adding books to the bookstore
-    store.addBook(book1, 10); // 10 copies of book1
-    store.addBook(book2, 5);  // 5 copies of book2
-    store.addBook(book3, 7);  // 7 copies of book3
-    store.addBook(book1, 3);  // Additional 3 copies of book1
+    store.addBook(book1, 10); 
+    store.addBook(book2, 5);  
+    store.addBook(book3, 7);  
+    store.addBook(book1, 3); 
 
-    // Displaying the number of copies of each book along with its title
     store.displayBookCopies();
 
-    // Display the total price of all books
     cout << "Total Price of all books: " << store.totalPrice() << endl;
 
     return 0;
