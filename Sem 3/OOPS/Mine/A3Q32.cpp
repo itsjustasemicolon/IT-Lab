@@ -1,25 +1,28 @@
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 class Employee {
 protected:
     string name;
-    float salary;
+    double salary;
 
 public:
-    Employee() : name(""), salary(0.0f) {}
-    Employee(string n, float s) : name(n), salary(s) {}
+    Employee(string empName, double empSalary) {
+        name = empName;
+        salary = empSalary;
+    }
 
-    void setName(string n) { name = n; }
-    string getName() const { return name; }
-
-    void setSalary(float s) { salary = s; }
-    float getSalary() const { return salary; }
-
-    virtual void printDetails() const {
+    virtual void printDetails() {
         cout << "Name: " << name << ", Salary: " << salary << endl;
     }
+
+    double getSalary() {
+        return salary;
+    }
+
+    virtual ~Employee() {}
 };
 
 class Manager : public Employee {
@@ -27,57 +30,58 @@ private:
     string type;
 
 public:
-    Manager() : Employee(), type("") {}
-    Manager(string n, float s, string t) : Employee(n, s), type(t) {}
+    Manager(string mgrName, double mgrSalary, string mgrType)
+        : Employee(mgrName, mgrSalary) {
+        type = mgrType;
+    }
 
-    void setType(string t) { type = t; }
-    string getType() const { return type; }
-
-    void printDetails() const override {
-        cout << "Name: " << name << ", Salary: " << salary << ", Type: " << type << endl;
+    void printDetails() {
+        cout << "Name: " << name << ", Salary: " << salary 
+             << ", Type: " << type << endl;
     }
 };
 
 class Clerk : public Employee {
 private:
-    float allowance;
+    double allowance;
 
 public:
-    Clerk() : Employee(), allowance(0.0f) {}
-    Clerk(string n, float s, float a) : Employee(n, s), allowance(a) {}
+    Clerk(string clerkName, double clerkSalary, double clerkAllowance)
+        : Employee(clerkName, clerkSalary) {
+        allowance = clerkAllowance;
+    }
 
-    void setAllowance(float a) { allowance = a; }
-    float getAllowance() const { return allowance; }
-
-    void printDetails() const override {
-        cout << "Name: " << name << ", Salary: " << salary << ", Allowance: " << allowance << endl;
+    void printDetails() {
+        cout << "Name: " << name << ", Salary: " << salary 
+             << ", Allowance: " << allowance << endl;
     }
 };
 
 int main() {
-    Manager m1("Alice", 50000.0f, "Senior Manager");
-    Clerk c1("Bob", 25000.0f, 2000.0f);
+    Manager mgr("John Doe", 75000, "Operations");
+    Clerk clk("Jane Smith", 35000, 5000);
 
-    m1.printDetails();
-    c1.printDetails();
+    mgr.printDetails();
+    clk.printDetails();
 
     Employee* employees[6];
-    employees[0] = new Employee("John", 30000.0f);
-    employees[1] = new Employee("Mary", 32000.0f);
-    employees[2] = new Manager("Charlie", 60000.0f, "Project Manager");
-    employees[3] = new Manager("Diana", 55000.0f, "Assistant Manager");
-    employees[4] = new Clerk("Eve", 27000.0f, 1500.0f);
-    employees[5] = new Clerk("Frank", 28000.0f, 1800.0f);
 
-    float totalSalary = 0.0f;
-    for (int i = 0; i < 6; i++) {
+    employees[0] = new Employee("Alice Brown", 50000);
+    employees[1] = new Employee("Bob White", 55000);
+    employees[2] = new Manager("Charlie Green", 80000, "Sales");
+    employees[3] = new Manager("David Black", 82000, "HR");
+    employees[4] = new Clerk("Eve Blue", 36000, 4000);
+    employees[5] = new Clerk("Frank Red", 37000, 4500);
+
+    double totalSalary = 0;
+    for (int i = 0; i < 6; ++i) {
         employees[i]->printDetails();
         totalSalary += employees[i]->getSalary();
     }
 
-    cout << "Total salary drawn by all employees: " << totalSalary << endl;
+    cout << "Total Salary drawn by all employees: " << totalSalary << endl;
 
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 6; ++i) {
         delete employees[i];
     }
 
