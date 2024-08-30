@@ -99,8 +99,7 @@ public:
     }
 };
 
-// Static member initialization
-double SavingsAccount::interestRate = 3.5; // Example interest rate of 3.5%
+double SavingsAccount::interestRate = 3.5; 
 int SavingsAccount::accountCounter = 0;
 
 int main()
@@ -109,14 +108,12 @@ int main()
     vector<SavingsAccount> accounts;
     srand(time(0));
 
-    // Create 100 SavingsAccount objects with random balances between 1000 and 100000
     for (int i = 0; i < NUM_ACCOUNTS; ++i)
     {
-        double initialBalance = 1000 + rand() % 99001; // Random balance between 1000 and 100000
+        double initialBalance = 1000 + rand() % 99001; 
         accounts.emplace_back("AccountHolder" + to_string(i + 1), initialBalance);
     }
 
-    // Calculate and add interest to each account
     double totalInterest = 0;
     for (auto &account : accounts)
     {
