@@ -1,3 +1,4 @@
+dosseg
 .model small
 .stack 100h
 .data
@@ -8,26 +9,24 @@ mov ax,@data
 mov ds,ax
 mov si,0030h
 mov di,0050h
-mov bx,0000h
-mov [si],bx
-add di,02h
-mov [di],bl
-sub di, 02h
-
 mov cx,0005h
+mov ax,0000h
+mov bx,0000h
+mov dl,00h
 
-looping:
-	mov bx,[si]
-	add [di],bx
-	mov bl,00h
-	adc bl,bl
-	add di,02h
-	add [di],bl
-	sub di,02h
-	add si,02h
-loop looping
-mov ah,03h
+l1:    mov bx,[si]
+	add ax,bx
+	adc dl,00h
+	inc si
+	inc si
+	loop l1
+mov [di],ax
+inc di
+inc di
+mov [di],dl
+
+int 03h
 mov ah,4ch
 int 21h
 main endp
-end
+end main
