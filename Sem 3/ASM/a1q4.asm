@@ -15,7 +15,7 @@ looping:
 	mov bl, [si]
 	add [di], bl
 	mov bl,00h
-	add bl,bl
+	adc bl,bl
 	inc di
 	add [di],bl
 	dec di
