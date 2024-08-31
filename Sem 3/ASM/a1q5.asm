@@ -4,12 +4,12 @@
 .code
 
 main proc
-mov ax,3000h
+mov ax,@data
 mov ds,ax
 mov si,0030h
 mov di,0050h
 mov bx,0000h
-mov [di],bx
+mov [si],bx
 add di,02h
 mov [di],bl
 sub di, 02h
