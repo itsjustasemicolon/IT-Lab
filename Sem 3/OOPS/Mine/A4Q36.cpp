@@ -35,23 +35,6 @@ class Point
 
                 return sqrt(dx*dx + dy*dy);
         }
-
-        void setX(double x)
-        {       this->x=x;
-        }
-
-        void setY(double y)
-        {       this->y=y;
-        }
-
-
-        double operator-(Point &ob)
-        {
-                double dx = x - ob.x;
-                double dy = y - ob.y;
-
-                return sqrt(dx*dx + dy*dy);
-        }
 };
 
 int main() {
