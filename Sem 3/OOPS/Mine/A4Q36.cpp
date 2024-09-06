@@ -35,7 +35,6 @@ class Point
 
                 return sqrt(dx*dx + dy*dy);
         }
-};
 
         void setX(double x)
         {       this->x=x;
