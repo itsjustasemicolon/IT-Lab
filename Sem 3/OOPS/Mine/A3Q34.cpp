@@ -1,4 +1,99 @@
-    double getVolume() const override {
+#include <bits/stdc++.h>
+using namespace std;
+
+
+class Shape {
+public:
+
+    virtual string getName() = 0;
+    virtual double getArea() = 0;
+
+
+    virtual ~Shape() {}
+};
+
+
+class TwoDShape : public Shape {
+public:
+
+    virtual ~TwoDShape() {}
+};
+
+
+class ThreeDShape : public Shape {
+public:
+
+    virtual double getVolume() = 0;
+    virtual ~ThreeDShape() {}
+};
+
+
+class Circle : public TwoDShape {
+private:
+    double radius;
+
+public:
+    Circle(double r) : radius(r) {}
+
+    string getName() override {
+        return "Circle";
+    }
+
+    double getArea() override {
+        return M_PI * radius * radius;
+    }
+};
+
+
+class Triangle : public TwoDShape {
+private:
+    double base, height;
+
+public:
+    Triangle(double b, double h) : base(b), height(h) {}
+
+    string getName() override {
+        return "Triangle";
+    }
+
+    double getArea() override {
+        return 0.5 * base * height;
+    }
+};
+
+class Ellipse : public TwoDShape {
+private:
+    double majorAxis, minorAxis;
+
+public:
+    Ellipse(double a, double b) : majorAxis(a), minorAxis(b) {}
+
+    string getName() override {
+        return "Ellipse";
+    }
+
+    double getArea() override {
+        return M_PI * majorAxis * minorAxis;
+    }
+};
+
+
+class Sphere : public ThreeDShape {
+private:
+    double radius;
+
+public:
+    Sphere(double r) : radius(r) {}
+
+    string getName() override {
+        return "Sphere";
+    }
+
+    double getArea() override {
+        return 4 * M_PI * radius * radius;
+    }
+    
+    double getVolume() override {
         return (4.0 / 3) * M_PI * pow(radius, 3);
     }
 };
@@ -10,15 +105,15 @@ private:
 public:
     Cube(double s) : side(s) {}
 
-    string getName() const override {
+    string getName() override {
         return "Cube";
     }
 
-    double getArea() const override {
+    double getArea() override {
         return 6 * side * side;
     }
 
-    double getVolume() const override {
+    double getVolume() override {
         return pow(side, 3);
     }
 };
