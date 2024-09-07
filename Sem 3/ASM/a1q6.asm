@@ -5,29 +5,30 @@ dosseg
 .code
 
 main proc
-mov ax,@data
-mov ds,ax
-mov si,0030h
-mov di,0050h
-mov cx,0005h
-mov ax,0000h
-mov bx,0000h
-mov dl,00h
+    mov ax, @data    ; Initialize data segment
+    mov ds, ax
+    
+    mov si, 0030h    ; Starting address of BCD numbers
+    mov di, 0040h    ; Address to store result (low byte)
+    mov cx, 0005h    ; Loop counter for 5 BCD numbers
+    mov ax, 0000h    ; Initialize accumulator for the result
+    mov dl, 00h      ; DL will hold the overflow (if any)
 
-l1:    mov bx,[si]
-	add ax,bx
-	daa
-	adc dl,00h
-	inc si
-	inc si
-	loop l1
-mov [di],ax
-inc di
-inc di
-mov [di],dl
+l1: 
+    mov bl, [si]     ; Load 1 BCD number from DS:0030H
+    add al, bl       ; Add it to the accumulator's low byte
+    daa              ; Decimal adjust after addition
+    adc dl, 00h      ; Add any carry to the high byte (DL)
+    inc si           ; Move to the next BCD number
+    loop l1          ; Repeat for all 5 numbers
 
-int 03h
-mov ah,4ch
-int 21h
+    mov [di], al     ; Store the lower byte of result in DS:0040H
+    inc di           ; Move to the next memory location
+    mov [di], dl     ; Store the higher byte (overflow) in DS:0041H
+
+    int 03h          ; Software interrupt for debugging (optional)
+    mov ah, 4Ch      ; Terminate program
+    int 21h          ; DOS interrupt to return control to the operating system
+
 main endp
 end main
