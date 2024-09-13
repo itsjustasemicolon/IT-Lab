@@ -18,7 +18,7 @@ public:
         this->val = ob1.val;
     }
 
-    Integer &operator=(const Integer &ob1)
+    Integer operator=(const Integer &ob1)
     {
         if (this != &ob1)
         {
@@ -39,7 +39,7 @@ public:
         return Integer(val + ob1.val);
     }
 
-    operator int() const
+    operator int()
     {
         return val;
     }
