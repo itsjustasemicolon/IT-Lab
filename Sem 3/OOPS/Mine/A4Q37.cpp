@@ -8,7 +8,10 @@ private:
     double imag;
 
 public:
-    Complex(double r = 0.0, double i = 0.0) : real(r), imag(i) {}
+    Complex(double r = 0.0, double i = 0.0)
+    { real = r;
+     imag = i;
+    }
 
     Complex operator+( Complex& ob)  {
         return Complex(real + ob.real, imag + ob.imag);
