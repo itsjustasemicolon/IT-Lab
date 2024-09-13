@@ -8,7 +8,10 @@ private:
     double real, imag;
 
 public:
-    Complex(double r = 0.0, double i = 0.0) : real(r), imag(i) {}
+    Complex(double r = 0.0, double i = 0.0){
+        real = r;
+        imag = i;
+    }
 
     friend ostream& operator<<(ostream& os, const Complex& c) {
         if (c.imag >= 0)
