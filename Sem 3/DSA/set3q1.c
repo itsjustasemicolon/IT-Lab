@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node
+typedef struct Node
 {
     int data;
     struct Node *left;
     struct Node *right;
-};
+} Node;
 
-struct Node *createNode(int data)
+Node *createNode(int data)
 {
-    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    Node *newNode = (Node *)malloc(sizeof(Node));
     if (!newNode)
     {
         printf("Memory error\n");
@@ -21,7 +21,7 @@ struct Node *createNode(int data)
     return newNode;
 }
 
-struct Node *insertNode(struct Node *root, int data)
+Node *insertNode(Node *root, int data)
 {
     if (root == NULL)
     {
@@ -49,7 +49,7 @@ struct Node *insertNode(struct Node *root, int data)
     return root;
 }
 
-void inOrder(struct Node *root)
+void inOrder(Node *root)
 {
     if (root == NULL)
     {
@@ -60,7 +60,7 @@ void inOrder(struct Node *root)
     inOrder(root->right);
 }
 
-void preOrder(struct Node *root)
+void preOrder(Node *root)
 {
     if (root == NULL)
     {
@@ -71,7 +71,7 @@ void preOrder(struct Node *root)
     preOrder(root->right);
 }
 
-void postOrder(struct Node *root)
+void postOrder(Node *root)
 {
     if (root == NULL)
     {
@@ -84,7 +84,7 @@ void postOrder(struct Node *root)
 
 int main()
 {
-    struct Node *root = NULL;
+    Node *root = NULL;
     int choice, data;
 
     while (1)
