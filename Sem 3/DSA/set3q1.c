@@ -51,7 +51,7 @@ Node *insertNode(Node *root, int data)
 
 void inOrder(Node *root)
 {
-    if (root == NULL)
+    if (root != NULL)
     {
     inOrder(root->left);
     printf("%d ", root->data);
@@ -73,7 +73,7 @@ void preOrder(Node *root)
 
 void postOrder(Node *root)
 {
-    if (root == NULL)
+    if (root != NULL)
     {
     postOrder(root->left);
     postOrder(root->right);
