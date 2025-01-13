@@ -105,7 +105,7 @@ class Professor extends Employee {
                      double salary, String dateOfJoining, int experience, String[] courses) {
         super(age, weight, height, dateOfBirth, address, salary, dateOfJoining, experience);
         this.courses = courses;
-        this.listOfAdvisees = new String[0]; // Initially no advisees
+        this.listOfAdvisees = new String[0]; 
     }
 
     public void addAdvisee(String adviseeName) {
