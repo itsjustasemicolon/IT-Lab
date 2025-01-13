@@ -106,7 +106,7 @@ class Manager {
     }
 }
 
-public class Demo {
+class Demo {
     public static void main(String[] args) {
         Manager manager = new Manager(5);
 
