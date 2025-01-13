@@ -1,42 +1,42 @@
-class bacc
+class BankAccount
 {
-    int acno;
-    float bal;
+    int AccountNumber;
+    float balance;
     String name;
-    bacc(String n, int a,float b)
+    BankAccount(String n, int a,float b)
     {
         name=n;
-        bal=b;
-        acno=a;
+        balanceance=b;
+        AccountNumber=a;
     }
     void balance()
     {
-        System.out.println("Balance: "+ bal);
+        System.out.println("balance: "+ balance);
     }
     void add(float x)
     {
-        bal+=x;
+        balance+=x;
     }
     void sub(float x)
     {
-        if((bal-x)>=0)
-        bal-=x;
+        if((balance-x)>=0)
+        balance-=x;
         else
-        System.out.println("Insufficient Balance");
+        System.out.println("Insufficient balance");
     }
 }
 class accman
 {
     int n;
-    bacc account[];
+    BankAccount account[];
     accman(int n)
     {
         this.n=n;
-        account=new bacc[n];
+        account=new BankAccount[n];
     }
     void create(int i,String n, int a,float b)
     {
-        account[i]=new bacc(n,a,b);
+        account[i]=new BankAccount(n,a,b);
     }
     void delete(int i)
     {
@@ -53,7 +53,7 @@ class accman
     }
     void details(int i)
     {
-        System.out.println("Details:\nName: "+ account[i].name+"\nBalance: "+account[i].bal+"Acc no: "+ account[i].acno);
+        System.out.println("Details:\nName: "+ account[i].name+"\nbalance: "+account[i].balance+"Acc no: "+ account[i].AccountNumber);
     }
     
 }
