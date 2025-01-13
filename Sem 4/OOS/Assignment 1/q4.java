@@ -63,15 +63,15 @@ class bank
     public static void main(String args[])
     {
         accman manager=new accman(5);
-        manager.create(0,"A",100,100f);
-        manager.create(1,"B",101,200f);
-        manager.create(2,"C",102,300f);
-        manager.create(3,"D",103,400f);
-        manager.create(4,"E",104,500f);
-        manager.details(0);
-        manager.details(1);
-        manager.details(2);
-        manager.details(3);
-        manager.details(4);
+        manager.create(10,"Soham",1000,10560f);
+        manager.create(20,"Anuska",1001,65200f);
+        manager.create(30,"Debodit",1002,84300f);
+        manager.create(40,"Rishika",1003,12400f);
+        manager.create(50,"Prama",1004,96500f);
+        manager.details(10);
+        manager.details(20);
+        manager.details(30);
+        manager.details(40);
+        manager.details(50);
     }
 }
