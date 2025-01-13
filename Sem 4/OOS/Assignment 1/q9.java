@@ -152,26 +152,22 @@ class Professor extends Employee {
 public class Main {
     public static void main(String[] args) {
 
-        // Creating Student
         String[] subjects = {"Math", "Physics", "Chemistry"};
         int[] marks = {85, 90, 78};
         Student student = new Student(20, 65, 1.75, "01/01/2003", "123 Street", "S123", subjects, marks);
         student.printStudentDetails();
         System.out.println();
 
-        // Creating Technician
         Technician technician = new Technician(30, 70, 1.80, "15/05/1993", "456 Avenue", 45000, "01/06/2015", 8);
         technician.printTechnicianDetails();
         System.out.println();
 
-        // Creating Professor
         String[] courses = {"Computer Science", "AI"};
         Professor professor = new Professor(45, 80, 1.85, "10/02/1978", "789 Boulevard", 75000, "01/01/2005", 20, courses);
         professor.addAdvisee("Alice");
         professor.addAdvisee("Bob");
         professor.printProfessorDetails();
 
-        // Removing an advisee
         professor.removeAdvisee("Alice");
         System.out.println("After removal:");
         professor.printProfessorDetails();
