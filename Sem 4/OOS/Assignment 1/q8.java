@@ -9,23 +9,15 @@ class Account {
         this.balance = balance;
     }
 
-    public String getAccNo() {
+    String getAccNo() {
         return accountNumber;
     }
 
-    public String getHolderName() {
-        return holderName;
-    }
-
-    public double getBalance() {
+    double getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public void printDetails() {
+    void printDetails() {
         System.out.println("Account Number: " + accountNumber);
         System.out.println("Holder Name: " + holderName);
         System.out.println("Balance: " + balance);
@@ -35,16 +27,16 @@ class Account {
 class SavingsAccount extends Account {
     double interestRate;
 
-    public SavingsAccount(String accountNumber, String holderName, double balance, double interestRate) {
+    SavingsAccount(String accountNumber, String holderName, double balance, double interestRate) {
         super(accountNumber, holderName, balance);
         this.interestRate = interestRate;
     }
 
-    public double calcYearlyInt() {
+    double calcYearlyInt() {
         return getBalance() * interestRate / 100;
     }
 
-    public void printSavingsDetails() {
+    void printSavingsDetails() {
         printDetails();
         System.out.println("Interest Rate: " + interestRate + "%");
     }
@@ -53,31 +45,27 @@ class SavingsAccount extends Account {
 class CurrentAccount extends Account {
     double overdraftLimit;
 
-    public CurrentAccount(String accountNumber, String holderName, double balance, double overdraftLimit) {
+    CurrentAccount(String accountNumber, String holderName, double balance, double overdraftLimit) {
         super(accountNumber, holderName, balance);
         this.overdraftLimit = overdraftLimit;
     }
 
-    public double getOverdraftLimit() {
-        return overdraftLimit;
-    }
-
-    public void printCurrentDetails() {
+    void printCurrentDetails() {
         printDetails();
         System.out.println("Overdraft Limit: " + overdraftLimit);
     }
 }
 
 class Manager {
-    private Account[] accounts;
-    private int count;
+    Account[] accounts;
+    int count;
 
-    public Manager(int size) {
+    Manager(int size) {
         accounts = new Account[size];
         count = 0;
     }
 
-    public void addAccount(Account account) {
+    void addAccount(Account account) {
         if (count < accounts.length) {
             accounts[count++] = account;
         } else {
@@ -85,7 +73,7 @@ class Manager {
         }
     }
 
-    public void displayAllAccounts() {
+    void displayAllAccounts() {
         for (int i = 0; i < count; i++) {
             if (accounts[i] instanceof SavingsAccount) {
                 ((SavingsAccount) accounts[i]).printSavingsDetails();
@@ -96,7 +84,7 @@ class Manager {
         }
     }
 
-    public void calcIntForSavings() {
+    void calcIntForSavings() {
         for (int i = 0; i < count; i++) {
             if (accounts[i] instanceof SavingsAccount) {
                 SavingsAccount sa = (SavingsAccount) accounts[i];
@@ -106,7 +94,7 @@ class Manager {
     }
 }
 
-class Demo {
+class q8 {
     public static void main(String[] args) {
         Manager manager = new Manager(5);
 
