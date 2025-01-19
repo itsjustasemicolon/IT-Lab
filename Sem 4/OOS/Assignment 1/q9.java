@@ -5,7 +5,7 @@ class Person {
     String dateOfBirth;
     String address;
 
-    public Person(int age, double weight, double height, String dateOfBirth, String address) {
+    Person(int age, double weight, double height, String dateOfBirth, String address) {
         this.age = age;
         this.weight = weight;
         this.height = height;
@@ -82,7 +82,7 @@ class Technician extends Employee {
 }
 
 class Professor extends Employee {
-    private String[] courses;
+    private final String[] courses;
     private String[] advisees = new String[0];
 
     public Professor(int age, double weight, double height, String dateOfBirth, String address,
@@ -131,26 +131,26 @@ class Professor extends Employee {
     }
 }
 
-public class Main {
+public class q9 {
     public static void main(String[] args) {
 
         String[] subjects = {"Math", "Physics", "Chemistry"};
         int[] marks = {85, 90, 78};
-        Student student = new Student(20, 65, 1.75, "01/01/2023", "123 Park Street", "S123", subjects, marks);
+        Student student = new Student(20, 65, 1.75, "17/01/2003", "123 Park Street", "S123", subjects, marks);
         student.printDetails();
         System.out.println();
 
-        Technician technician = new Technician(30, 70, 1.80, "15/05/1999", "456 Java Avn", 45000, "01/06/2015", 8);
+        Technician technician = new Technician(30, 70, 1.80, "15/05/2004", "456 Java Avn", 45000, "01/06/2015", 8);
         technician.printDetails();
         System.out.println();
 
         String[] courses = {"OOS", "AI/ML"};
-        Professor professor = new Professor(45, 80, 1.85, "10/02/1978", "789 Santoshpur", 75000, "01/01/2005", 20, courses);
-        professor.addAdvisee("Alice");
-        professor.addAdvisee("Bob");
+        Professor professor = new Professor(45, 80, 1.85, "10/02/2005", "789 Santoshpur", 75000, "01/01/2005", 20, courses);
+        professor.addAdvisee("Soham");
+        professor.addAdvisee("Debo");
         professor.printDetails();
 
-        professor.removeAdvisee("Alice");
+        professor.removeAdvisee("Soham");
         System.out.println("After removal:");
         professor.printDetails();
     }
