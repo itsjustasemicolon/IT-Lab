@@ -1,59 +1,47 @@
 abstract class Publication {
-    private int noOfPages;
-    private double price;
-    private String publisherName;
-   
+    int noOfPages;
+    double price;
+    String publisherName;
+
     public Publication(int noOfPages, double price, String publisherName) {
         this.noOfPages = noOfPages;
         this.price = price;
         this.publisherName = publisherName;
     }
 
-    public int getNoOfPages() {
+    int getNoOfPages() {
         return noOfPages;
     }
 
-    public void setNoOfPages(int noOfPages) {
-        this.noOfPages = noOfPages;
-    }
-
-    public double getPrice() {
+    double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getPublisherName() {
+    String getPublisherName() {
         return publisherName;
     }
 
-    public void setPublisherName(String publisherName) {
-        this.publisherName = publisherName;
-    }
-
-    public abstract void printDetails();
+    abstract void printDetails();
 }
 
 class Book extends Publication {
-    private String authorName;
+    String authorName;
 
-    public Book(int noOfPages, double price, String publisherName, String authorName) {
+    Book(int noOfPages, double price, String publisherName, String authorName) {
         super(noOfPages, price, publisherName);
         this.authorName = authorName;
     }
 
-    public String getAuthorName() {
+    String getAuthorName() {
         return authorName;
     }
 
-    public void setAuthorName(String authorName) {
+    void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
 
-    @Override
-    public void printDetails() {
+
+    void printDetails() {
         System.out.println("Book Details:");
         System.out.println("Pages: " + getNoOfPages());
         System.out.println("Price: " + getPrice());
@@ -64,23 +52,22 @@ class Book extends Publication {
 }
 
 class Journal extends Publication {
-    private String issueNumber;
+    String issueNumber;
 
-    public Journal(int noOfPages, double price, String publisherName, String issueNumber) {
+    Journal(int noOfPages, double price, String publisherName, String issueNumber) {
         super(noOfPages, price, publisherName);
         this.issueNumber = issueNumber;
     }
 
-    public String getIssueNumber() {
+    String getIssueNumber() {
         return issueNumber;
     }
 
-    public void setIssueNumber(String issueNumber) {
+    void setIssueNumber(String issueNumber) {
         this.issueNumber = issueNumber;
     }
 
-    @Override
-    public void printDetails() {
+    void printDetails() {
         System.out.println("Journal Details:");
         System.out.println("Pages: " + getNoOfPages());
         System.out.println("Price: " + getPrice());
@@ -91,8 +78,8 @@ class Journal extends Publication {
 }
 
 class Library {
-    private Publication[] publications;
-    private int count;
+    Publication[] publications;
+    int count;
 
     public Library(int size) {
         publications = new Publication[size];
@@ -115,13 +102,13 @@ class Library {
     }
 }
 
-class Demo {
+class q7 {
     public static void main(String[] args) {
         Library library = new Library(5);
 
-        Book book1 = new Book(200, 149.99, "Publisher A", "Author AX");
-        Book book2 = new Book(300, 249.99, "Publisher B", "Author BY");
-        Book book3 = new Book(150, 149.99, "Publisher C", "Author CZ");
+        Book book1 = new Book(200, 149.99, "Publisher A", "Author AXZ");
+        Book book2 = new Book(300, 249.99, "Publisher B", "Author BFY");
+        Book book3 = new Book(150, 149.99, "Publisher C", "Author CJZ");
 
         Journal journal1 = new Journal(100, 247.99, "Journal Publisher A", "Issue 1");
         Journal journal2 = new Journal(120, 258.99, "Journal Publisher B", "Issue 2");
