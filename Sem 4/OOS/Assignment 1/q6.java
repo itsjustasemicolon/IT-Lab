@@ -64,6 +64,9 @@ class Dept {
         }
         return total;
     }
+}
+
+class q6 {
 
     public static void main(String[] args) {
         Dept dept = new Dept("IT", "SL");
