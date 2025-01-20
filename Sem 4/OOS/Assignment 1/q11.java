@@ -72,7 +72,7 @@ class Date {
     }
 }
 
-public class Main {
+public class q11 {
     public static void main(String[] args) {
         Date date = new Date();
         System.out.print("Input date: ");
