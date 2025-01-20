@@ -72,10 +72,10 @@ class Date {
     }
 }
 
-public class q11 {
+public class Main {
     public static void main(String[] args) {
-        Date date = new Date(19, 1, 2025);
-        System.out.print("Current date: ");
+        Date date = new Date();
+        System.out.print("Input date: ");
         date.printDate();
         date.getPreviousDay();
         System.out.print("Previous day: ");
