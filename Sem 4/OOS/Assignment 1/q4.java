@@ -77,7 +77,7 @@ class AccountManager {
     }
 }
 
-public class bank {
+public class q4 {
     public static void main(String[] args) {
         AccountManager manager = new AccountManager(5);
         manager.create(0, "Soham", 1000, 10560f);
