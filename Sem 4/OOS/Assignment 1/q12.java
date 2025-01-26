@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 class Student {
     String name;
@@ -51,7 +50,7 @@ class TabulationSheet {
                 return marks[i];
             }
         }
-        return -1; 
+        return -1;
     }
 
     String getSubject() {
@@ -89,14 +88,14 @@ class MarkSheet {
     }
 }
 
-class Main {
+class q12 {
     public static void main(String[] args) {
-        String[] subjects = {"Math", "Physics", "Chemistry", "Biology", "English"};
+        String[] subjects = {"CoA", "CPNM", "OOP", "DBMS", "OOS"};
 
         Student[] students = {
-            new Student("Alice", 101, subjects),
-            new Student("Bob", 102, subjects),
-            new Student("Charlie", 103, subjects)
+                new Student("Soham Das", 101, subjects),
+                new Student("Debodit Ray", 102, subjects),
+                new Student("Anuska Nath", 103, subjects)
         };
 
         TabulationSheet[] tabSheets = new TabulationSheet[subjects.length];
@@ -105,11 +104,11 @@ class Main {
         }
 
         int[][] marksData = {
-            {85, 90, 75},
-            {80, 88, 70},
-            {78, 84, 65},
-            {92, 85, 80},
-            {88, 79, 82}
+                {85, 90, 75},
+                {80, 88, 70},
+                {78, 84, 65},
+                {92, 85, 80},
+                {88, 79, 82}
         };
 
         for (int i = 0; i < subjects.length; i++) {
