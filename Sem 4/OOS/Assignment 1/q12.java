@@ -1,4 +1,3 @@
-
 class Student {
     String name;
     int rollNo;
@@ -8,18 +7,6 @@ class Student {
         this.name = name;
         this.rollNo = rollNo;
         this.subjects = subjects;
-    }
-
-    String getName() {
-        return name;
-    }
-
-    int getRollNo() {
-        return rollNo;
-    }
-
-    String[] getSubjects() {
-        return subjects;
     }
 }
 
@@ -36,12 +23,10 @@ class TabulationSheet {
         count = 0;
     }
 
-    public void addMarks(int rollNo, int mark) {
-        if (count < rollNos.length) {
-            rollNos[count] = rollNo;
-            marks[count] = mark;
-            count++;
-        }
+    void addMarks(int rollNo, int mark) {
+        rollNos[count] = rollNo;
+        marks[count] = mark;
+        count++;
     }
 
     int getMark(int rollNo) {
@@ -51,10 +36,6 @@ class TabulationSheet {
             }
         }
         return -1;
-    }
-
-    String getSubject() {
-        return subject;
     }
 }
 
@@ -72,11 +53,9 @@ class MarkSheet {
     }
 
     void addMarks(String subject, int mark) {
-        if (count < subjects.length) {
-            subjects[count] = subject;
-            marks[count] = mark;
-            count++;
-        }
+        subjects[count] = subject;
+        marks[count] = mark;
+        count++;
     }
 
     void printMarkSheet() {
@@ -113,15 +92,15 @@ class q12 {
 
         for (int i = 0; i < subjects.length; i++) {
             for (int j = 0; j < students.length; j++) {
-                tabSheets[i].addMarks(students[j].getRollNo(), marksData[i][j]);
+                tabSheets[i].addMarks(students[j].rollNo, marksData[i][j]);
             }
         }
 
         MarkSheet[] markSheets = new MarkSheet[students.length];
         for (int i = 0; i < students.length; i++) {
-            markSheets[i] = new MarkSheet(students[i].getName(), subjects.length);
+            markSheets[i] = new MarkSheet(students[i].name, subjects.length);
             for (TabulationSheet tabSheet : tabSheets) {
-                markSheets[i].addMarks(tabSheet.getSubject(), tabSheet.getMark(students[i].getRollNo()));
+                markSheets[i].addMarks(tabSheet.subject, tabSheet.getMark(students[i].rollNo));
             }
         }
 
