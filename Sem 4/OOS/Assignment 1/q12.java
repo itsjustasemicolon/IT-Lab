@@ -1,36 +1,36 @@
 import java.util.Scanner;
 
 class Student {
-    private String name;
-    private int rollNo;
-    private String[] subjects;
+    String name;
+    int rollNo;
+    String[] subjects;
 
-    public Student(String name, int rollNo, String[] subjects) {
+    Student(String name, int rollNo, String[] subjects) {
         this.name = name;
         this.rollNo = rollNo;
         this.subjects = subjects;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public int getRollNo() {
+    int getRollNo() {
         return rollNo;
     }
 
-    public String[] getSubjects() {
+    String[] getSubjects() {
         return subjects;
     }
 }
 
 class TabulationSheet {
-    private String subject;
-    private int[] rollNos;
-    private int[] marks;
-    private int count;
+    String subject;
+    int[] rollNos;
+    int[] marks;
+    int count;
 
-    public TabulationSheet(String subject, int capacity) {
+    TabulationSheet(String subject, int capacity) {
         this.subject = subject;
         rollNos = new int[capacity];
         marks = new int[capacity];
@@ -45,7 +45,7 @@ class TabulationSheet {
         }
     }
 
-    public int getMark(int rollNo) {
+    int getMark(int rollNo) {
         for (int i = 0; i < count; i++) {
             if (rollNos[i] == rollNo) {
                 return marks[i];
@@ -54,25 +54,25 @@ class TabulationSheet {
         return -1; 
     }
 
-    public String getSubject() {
+    String getSubject() {
         return subject;
     }
 }
 
 class MarkSheet {
-    private String studentName;
-    private String[] subjects;
-    private int[] marks;
-    private int count;
+    String studentName;
+    String[] subjects;
+    int[] marks;
+    int count;
 
-    public MarkSheet(String studentName, int subjectCount) {
+    MarkSheet(String studentName, int subjectCount) {
         this.studentName = studentName;
         subjects = new String[subjectCount];
         marks = new int[subjectCount];
         count = 0;
     }
 
-    public void addMarks(String subject, int mark) {
+    void addMarks(String subject, int mark) {
         if (count < subjects.length) {
             subjects[count] = subject;
             marks[count] = mark;
@@ -80,7 +80,7 @@ class MarkSheet {
         }
     }
 
-    public void printMarkSheet() {
+    void printMarkSheet() {
         System.out.println("Marksheet for: " + studentName);
         for (int i = 0; i < count; i++) {
             System.out.println(subjects[i] + ": " + marks[i]);
@@ -89,7 +89,7 @@ class MarkSheet {
     }
 }
 
-public class Main {
+class Main {
     public static void main(String[] args) {
         String[] subjects = {"Math", "Physics", "Chemistry", "Biology", "English"};
 
