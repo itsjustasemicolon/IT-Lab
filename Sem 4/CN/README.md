@@ -226,8 +226,14 @@ iftop  # Traffic breakdown
 
 ### **y. `ip`**  
 **What it does**:  
-Modern network configuration Swiss Army knife.  
+The ip command in Linux is used to manage network interfaces, addresses, and routes. Some examples of ip commands include: 
+
 ```bash
+
+ip addr: Displays addresses, adds new addresses, and deletes old ones 
+ip link: Configures new interfaces or changes the configuration of existing interfaces 
+ip neigh: Displays the Address Resolution Protocol (ARP) table and information about the physical interfaces of devices connected to a specific device 
+  
 ip addr show  # Interface overview
 ```
 
