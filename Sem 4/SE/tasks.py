@@ -6,7 +6,7 @@ conn = sq.connect('database.db')
 cur = conn.cursor()
 
 #create a table
-#cur.execute("""INSERT INTO customers VALUES('Anuska','Nath','anne@gmail.com')
+#cur.execute("""INSERT INTO customers VALUES('itsjusta','semicolon','itsjustasemicolon@gmail.com')
 #        """)
 
 cur.execute("""SELECT rowid, * FROM customers""")
