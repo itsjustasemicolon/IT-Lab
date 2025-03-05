@@ -111,7 +111,7 @@ def add_task(conn, title, description, status='pending', priority='medium'):
     ''', (title, description, status, priority))
     task_id = cursor.lastrowid
     conn.commit()
-    print(f"Task {task_id} added successfully.")
+    print("Task {task_id} added successfully.")
     return task_id
 
 def update_task(conn, task_id, title=None, description=None, status=None, priority=None):
