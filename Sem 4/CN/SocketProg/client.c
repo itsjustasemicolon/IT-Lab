@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-#define PORT 8099
 #define BUFFER_SIZE 256
 
 void error(const char *msg) {
@@ -12,11 +11,20 @@ void error(const char *msg) {
     exit(1);
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     int sockfd, n;
     struct sockaddr_in serv_addr;
     char buffer[BUFFER_SIZE];
    
+    // Check if port number is provided
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <port>\n", argv[0]);
+        exit(1);
+    }
+
+    // Get the port number from command-line argument
+    int PORT = atoi(argv[1]);
+
     // Create socket
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0) {
