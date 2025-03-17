@@ -30,13 +30,15 @@ public class SeriesQ3 {
                         catch (InterruptedException e) {}
                     }
                     sum += 1.0 / currentFactorial;
+                    System.out.println("Term " + (i+1) + ": 1/" + currentFactorial + " = " + 1.0 / currentFactorial);
                     ready = false;
                     lock.notify();
                 }
             }
             System.out.println("Result: " + sum);
         });
-
+        
+        System.out.println("Term 0: 1 = 1.0");
         t1.start();
         t2.start();
     }
