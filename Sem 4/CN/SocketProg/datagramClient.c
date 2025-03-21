@@ -14,9 +14,9 @@ void error(const char *msg) {
 int main(int argc, char *argv[]) {
     int sockfd, n;
     struct sockaddr_in serv_addr;
-    socklen_t addr_len = sizeof(serv_addr);
     char buffer[BUFFER_SIZE];
-   
+    socklen_t addr_len = sizeof(serv_addr);
+
     if (argc < 2) {
         fprintf(stderr, "Usage: %s <port>\n", argv[0]);
         exit(1);
@@ -24,13 +24,13 @@ int main(int argc, char *argv[]) {
 
     int PORT = atoi(argv[1]);
 
-    // Create UDP socket (changed to SOCK_DGRAM)
+    // Create UDP socket
     sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     if (sockfd < 0) {
         error("ERROR opening socket");
     }
 
-    // Setup server address (same as before)
+    // Configure server address
     memset(&serv_addr, 0, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(PORT);
@@ -43,15 +43,13 @@ int main(int argc, char *argv[]) {
         bzero(buffer, BUFFER_SIZE);
         fgets(buffer, BUFFER_SIZE, stdin);
         
-        // Send using sendto() instead of send()
-        if (sendto(sockfd, buffer, strlen(buffer), 0, 
-                  (struct sockaddr *)&serv_addr, addr_len) < 0) {
-            error("Send failed");
-        }
+        // Send message using sendto()
+        sendto(sockfd, buffer, strlen(buffer), 0,
+              (struct sockaddr *)&serv_addr, addr_len);
         
-        // Receive using recvfrom() instead of read()
+        // Receive response using recvfrom()
         bzero(buffer, BUFFER_SIZE);
-        n = recvfrom(sockfd, buffer, BUFFER_SIZE, 0, 
+        n = recvfrom(sockfd, buffer, BUFFER_SIZE, 0,
                     (struct sockaddr *)&serv_addr, &addr_len);
         
         if (n > 0) {
