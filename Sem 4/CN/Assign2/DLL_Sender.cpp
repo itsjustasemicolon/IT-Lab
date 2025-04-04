@@ -14,7 +14,7 @@ bool WaitForEventSender() {
 
 char* GetData() {
     static char data[256];
-    cout << "Enter message to send (max 255 chars): ";
+    cout << "Enter message to send (max 255 chars, type 'exit' to quit): ";
     cin.getline(data, sizeof(data));
     return data;
 }
@@ -33,11 +33,17 @@ void SendFrame(Frame frame) {
 }
 
 int main() {
-    if (WaitForEventSender()) {
-        char* data = GetData();
-        Frame frame = MakeFrame(data);
-        SendFrame(frame);
-        cout << "Sender transmitted: " << data << endl;
+    while (true) {
+        if (WaitForEventSender()) {
+            char* data = GetData();
+            if (strcmp(data, "exit") == 0) {
+                cout << "Exiting sender..." << endl;
+                break;
+            }
+            Frame frame = MakeFrame(data);
+            SendFrame(frame);
+            cout << "Sender transmitted: " << data << endl;
+        }
     }
     return 0;
 }
