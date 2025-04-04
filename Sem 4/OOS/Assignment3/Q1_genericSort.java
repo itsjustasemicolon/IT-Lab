@@ -1,4 +1,4 @@
-public class q1_genericSort {
+public class Q1_genericSort {
 
     public static <T extends Comparable<T>> T[] sortArray(T[] array) {
         int n = array.length;
