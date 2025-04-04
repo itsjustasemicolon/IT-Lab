@@ -224,3 +224,50 @@ This is basically how reliable communication works on the internet - making sure
 
 
 ### Q4. Write a program in C/C++ with suitable functions to implement Selective-repeat based sliding window protocol by considering the followings: a. DLL communications are Non-NACK based b. DLL communications are NACK based c. DLL communications are Piggybacked based
+
+# Selective-Repeat Protocol Explained Simply
+
+I've created a program that shows how the Selective-Repeat sliding window protocol works. Unlike Go-Back-N (which resends all unacknowledged frames when there's an error), Selective-Repeat only resends the specific frames that were lost or corrupted. This makes it more efficient.
+
+## The Key Differences from Go-Back-N
+
+1. **Individual Timers**: Each frame has its own timer instead of one timer for the oldest unacknowledged frame
+2. **Buffering**: The receiver can accept frames out of order and buffer them
+3. **Selective Resending**: Only lost frames are resent, not the entire window
+
+## The Three Communication Types
+
+### 1. Non-NACK Based
+- Receiver sends positive acknowledgments (ACKs) for frames it receives correctly
+- Sender relies on timeouts to detect lost frames
+- When a timeout occurs, only the specific lost frame is resent
+
+### 2. NACK Based
+- Receiver sends both ACKs and NACKs (Negative ACKs)
+- When it receives a frame out of order, it immediately sends a NACK for the missing frame
+- This allows faster recovery than waiting for a timeout
+
+### 3. Piggybacked
+- Both sides are sending data to each other
+- Acknowledgments are attached to data frames going in the opposite direction
+- Saves bandwidth by combining data and control information
+
+## How the Program Works
+
+The code includes these key components:
+
+- `Frame` struct: Represents a message with sequence numbers and data
+- `Sender` class: Manages sending frames and tracking which ones are acknowledged
+- `Receiver` class: Receives frames, buffers out-of-order ones, and delivers in-order data
+- `Channel` class: Simulates a connection with random errors
+- `Timer` class: Individual timers for each frame
+
+The `main()` function demonstrates all three communication types with examples of frame loss and recovery.
+
+## How It Differs from Go-Back-N
+
+In the Go-Back-N implementation, when a frame is lost, the sender resends all frames from the lost one to the end of the window. In Selective-Repeat, only the specific lost frame is resent, making it more efficient when multiple frames might be lost.
+
+Additionally, the receiver in Selective-Repeat can accept and buffer out-of-order frames, while Go-Back-N simply discards them.
+
+Would you like me to explain any specific part of the code in more detail?
