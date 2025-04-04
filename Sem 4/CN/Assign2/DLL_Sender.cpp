@@ -1,89 +1,43 @@
 #include <iostream>
+#include <fstream>
 #include <cstring>
-#include <chrono>
-#include <thread>
-#include <cstdlib>
-#include <arpa/inet.h>
-#include <unistd.h>
 
-#define FRAME_SIZE   1024
-#define TOTAL_FRAMES 10
+using namespace std;
 
-void WaitForEvent(int frame_number);
-void GetData(char* data, int frame_number);
-void MakeFrame(char* data, char* frame);
-void SendFrame(int sockfd, char* frame);
+struct Frame {
+    char data[256];
+};
 
-void WaitForEvent(int frame_number)
-{
-    int wait_time = 500 + std::rand() % 1000;
-    std::this_thread::sleep_for(std::chrono::milliseconds(wait_time));
+bool WaitForEventSender() {
+    return true; // Always ready to send
 }
 
-void GetData(char* data, int frame_number)
-{
-    snprintf(data, FRAME_SIZE, "Frame %d", frame_number);
+char* GetData() {
+    static char data[256];
+    cout << "Enter message to send (max 255 chars): ";
+    cin.getline(data, sizeof(data));
+    return data;
 }
 
-void MakeFrame(char* data, char* frame)
-{
-    strncpy(frame, data, FRAME_SIZE);
-    frame[FRAME_SIZE - 1] = '\0';   // Ensure null-termination
+Frame MakeFrame(char* data) {
+    Frame frame;
+    strncpy(frame.data, data, sizeof(frame.data) - 1);
+    frame.data[sizeof(frame.data) - 1] = '\0'; // Ensure null-termination
+    return frame;
 }
 
-void SendFrame(int sockfd, char* frame)
-{
-    send(sockfd, frame, FRAME_SIZE, 0);
-    std::cout << "Sending frame: " << frame << std::endl;
+void SendFrame(Frame frame) {
+    ofstream outFile("medium.dat", ios::binary);
+    outFile.write(reinterpret_cast<char*>(&frame), sizeof(Frame));
+    outFile.close();
 }
 
-void Sender(char const* ip, int port)
-{
-    int sockfd;
-    struct sockaddr_in servaddr;
-
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd == -1) {
-        std::cerr << "Socket creation failed." << std::endl;
-        exit(EXIT_FAILURE);
+int main() {
+    if (WaitForEventSender()) {
+        char* data = GetData();
+        Frame frame = MakeFrame(data);
+        SendFrame(frame);
+        cout << "Sender transmitted: " << data << endl;
     }
-
-    servaddr.sin_family = AF_INET;
-    servaddr.sin_port   = htons(port);
-
-    if (inet_pton(AF_INET, ip, &servaddr.sin_addr) <= 0) {
-        std::cerr << "Invalid address / Address not supported" << std::endl;
-        exit(EXIT_FAILURE);
-    }
-
-    if (connect(sockfd, (struct sockaddr*)&servaddr, sizeof(servaddr)) != 0) {
-        std::cerr << "Connection to the server failed." << std::endl;
-        exit(EXIT_FAILURE);
-    }
-
-    char data[FRAME_SIZE];
-    char frame[FRAME_SIZE];
-
-    for (int i = 0; i < TOTAL_FRAMES; ++i) {
-        GetData(data, i);
-        MakeFrame(data, frame);
-        SendFrame(sockfd, frame);
-        WaitForEvent(i);
-    }
-
-    close(sockfd);
-}
-
-int main(int argc, char* argv[])
-{
-    if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " <IP> <Port>" << std::endl;
-        return EXIT_FAILURE;
-    }
-
-    char const* ip = argv[1];
-    int port       = std::stoi(argv[2]);
-
-    Sender(ip, port);
     return 0;
 }
