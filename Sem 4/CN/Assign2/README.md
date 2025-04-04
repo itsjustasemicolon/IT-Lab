@@ -225,7 +225,7 @@ This is basically how reliable communication works on the internet - making sure
 
 ### Q4. Write a program in C/C++ with suitable functions to implement Selective-repeat based sliding window protocol by considering the followings: a. DLL communications are Non-NACK based b. DLL communications are NACK based c. DLL communications are Piggybacked based
 
-# Selective-Repeat Protocol Explained Simply
+### Selective-Repeat Protocol Explained Simply
 
 I've created a program that shows how the Selective-Repeat sliding window protocol works. Unlike Go-Back-N (which resends all unacknowledged frames when there's an error), Selective-Repeat only resends the specific frames that were lost or corrupted. This makes it more efficient.
 
