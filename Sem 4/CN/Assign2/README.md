@@ -221,3 +221,6 @@ The Go-Back-N protocol is like having numbered messages with receipts:
 The `main()` function shows examples of how each method works, including what happens when messages get lost.
 
 This is basically how reliable communication works on the internet - making sure all your data gets where it's going, even when parts of it get lost along the way!
+
+
+### Write a program in C/C++ with suitable functions to implement Selective-repeat based sliding window protocol by considering the followings: a. DLL communications are Non-NACK based b. DLL communications are NACK based c. DLL communications are Piggybacked based
