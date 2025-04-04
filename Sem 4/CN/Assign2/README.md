@@ -170,3 +170,54 @@ Think of it like:
 ---
 
 This code is a simplified version of how *real* networks (like WiFi/cellular) ensure your messages/photos arrive intact, even when the connection isn't perfect! 🌐🔒
+
+
+
+
+### Q3 Implement Go-back-n based sliding window protocol in C/C++ by considering the followings: a. DLL communications are Non-NACK based b. DLL communications are NACK based c. DLL communications are Piggybacked based (i.e.. bi-directional communication)
+### Go-Back-N Protocol Explained
+
+Imagine you're sending a bunch of text messages to your friend, but sometimes the messages get lost. How would you make sure all your messages arrive? That's what this code solves!
+
+## The Basic Idea
+
+The Go-Back-N protocol is like having numbered messages with receipts:
+
+1. You send multiple messages at once (let's say messages 0, 1, 2, 3)
+2. Your friend confirms when they get each message ("Got message 0!")
+3. If a message gets lost, you resend that message and all the ones after it
+
+## Three Ways It Works in This Code
+
+### 1. Non-NACK Based (Just Confirmations)
+- You send messages 0, 1, 2, 3
+- Your friend confirms each message they receive
+- If you don't get confirmation after waiting a while, you assume something got lost and resend everything
+
+### 2. NACK-Based (With Rejection Notices)
+- Same as above, but if your friend gets message 2 before message 1, they can immediately tell you "Hey, I'm missing message 1!"
+- Then you can quickly resend message 1 without waiting
+
+### 3. Piggybacked (Two-Way Conversation)
+- Both you and your friend are sending messages to each other
+- Instead of sending separate confirmation messages, you just attach confirmations to your regular messages
+- Like saying "Got your message 3! By the way, here's my message 5..."
+
+## Main Parts of the Code
+
+- `Frame`: This is just a message with a number and some data
+- `Sender`: This sends messages and keeps track of which ones got confirmed
+- `Receiver`: This receives messages and sends confirmations
+- `Channel`: This simulates the connection between sender and receiver, including random message loss
+- `Timer`: This helps the sender know when to resend messages if confirmations don't come back
+
+## How It Works Step by Step
+
+1. The sender maintains a "window" of messages (let's say 4 messages) it can send without waiting for confirmations
+2. As confirmations come in, the window slides forward allowing new messages to be sent
+3. If confirmations don't come back in time (timeout) or the receiver reports a missing message (NACK), the sender resends messages
+4. The receiver only accepts messages in the correct order and sends confirmations
+
+The `main()` function shows examples of how each method works, including what happens when messages get lost.
+
+This is basically how reliable communication works on the internet - making sure all your data gets where it's going, even when parts of it get lost along the way!
