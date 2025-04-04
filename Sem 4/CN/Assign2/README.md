@@ -1,9 +1,6 @@
-Q1. Implement the Simplest Protocol in C/C++ for sender-site DLL and receiver-site DLL
-with the following the following elementary functionalities:
-WaitForEvent(), GetData(), MakeFrame(), SendFrame(), ReceiveFrame(),
-ExtractData(), DeliverData(
+### **Q1. Implement the Simplest Protocol in C/C++ for sender-site DLL and receiver-site DLL with the following the following elementary functionalities: WaitForEvent(), GetData(), MakeFrame(), SendFrame(), ReceiveFrame(), ExtractData(), DeliverData()**
 
-### **The Big Picture**
+**The Big Picture**
 Imagine you have two computers: **Sender Sam** and **Receiver Rita**. They want to chat, but they can't talk directly. Instead, they pass notes (messages) through a shared desk drawer (**medium.dat** file). Here's how it works:
 
 ---
@@ -76,3 +73,6 @@ Imagine you have two computers: **Sender Sam** and **Receiver Rita**. They want 
 This is a simplified version of how *real* networking works! When you send a text message or email, devices use similar principles (just with way more security and error-checking). You’re basically building a tiny internet! 🌐
 
 Let me know if you want to dive deeper into any part! 😊
+
+
+### **Q2. Implement Stop-n-wait protocol in C/C++ by considering: a. Channel is noiseless b. Channel is noisy (hint: introduce probability of damaging/losing the frame in transit)**
