@@ -270,4 +270,155 @@ In the Go-Back-N implementation, when a frame is lost, the sender resends all fr
 
 Additionally, the receiver in Selective-Repeat can accept and buffer out-of-order frames, while Go-Back-N simply discards them.
 
-Would you like me to explain any specific part of the code in more detail?
+### Q5. Suppose there is a provision to let the sender know about the condition of the receiver’s buffer (i.e., buffer size is 1 or 2m-1) by using a framing bit along with ACK. Write an optimized sliding window protocol in C/C++ to improve performance of the DLL communication systems
+
+Here's a detailed explanation of how the optimized sliding window protocol works in this code:
+
+### **Key Components**
+1. **Packet Structure**:
+   ```cpp
+   struct Packet {
+       int seq_num;    // Sequence number for ordering
+       string data;    // Payload data
+   };
+   ```
+2. **ACK Structure**:
+   ```cpp
+   struct Ack {
+       int ack_num;      // Cumulative ACK number
+       bool framing_bit; // Buffer status (0=spacious, 1=congested)
+   };
+   ```
+
+---
+
+### **Core Mechanism**
+The protocol implements a **dynamic sliding window** that adapts based on receiver's buffer status:
+
+1. **Sender Workflow**:
+   - Maintains a send window (cwnd) that can switch between:
+     - **Conservative mode (cwnd=1)** when receiver buffer is nearly full
+     - **Aggressive mode (cwnd=2m-1)** when receiver has space
+   - Uses three key sequence numbers:
+     - `send_base`: First unacknowledged packet
+     - `next_seq_num`: Next packet to send
+     - `max_seq`: Maximum sequence number (2^m - 1)
+
+2. **Receiver Workflow**:
+   - Buffer size = 2m-1 packets
+   - Uses framing bit to indicate buffer status:
+     - **0**: Buffer has >1 free space (can handle window size 2m-1)
+     - **1**: Buffer has ≤1 free space (needs window size 1)
+
+---
+
+### **Key Operations**
+
+**1. Packet Transmission**:
+```cpp
+void Sender::send_packets() {
+    while (next_seq_num < (send_base + cwnd) % (max_seq + 1) && 
+          !send_queue.empty()) {
+        // Create and send packet
+        Packet pkt = send_queue.front();
+        pkt.seq_num = next_seq_num;
+        in_flight.push_back(pkt);
+        // Update sequence numbers with modulo wrap
+        next_seq_num = (next_seq_num + 1) % (max_seq + 1);
+    }
+}
+```
+- Operates within current window size (cwnd)
+- Uses modulo arithmetic for sequence number wrapping
+
+**2. ACK Processing**:
+```cpp
+void Sender::receive_ack(Ack ack) {
+    // Update window size based on framing bit
+    cwnd = ack.framing_bit ? 1 : (2*m - 1);
+    
+    // Remove acknowledged packets
+    list<Packet>::iterator it = in_flight.begin();
+    while (it != in_flight.end() && it->seq_num < ack.ack_num) {
+        it = in_flight.erase(it);
+    }
+}
+```
+- Uses cumulative ACKs (ack_num indicates next expected packet)
+- Dynamically adjusts window size using framing bit
+
+**3. Buffer Management (Receiver)**:
+```cpp
+Ack Receiver::process_packet(Packet pkt) {
+    // Only accept in-order packets with buffer space
+    if (pkt.seq_num == expected_seq_num && buffer.size() < buffer_size) {
+        buffer.push(pkt);
+        expected_seq_num = (expected_seq_num + 1) % (max_seq + 1);
+    }
+    
+    // Set framing bit based on buffer status
+    ack.framing_bit = (buffer_size - buffer.size()) <= 1;
+}
+```
+- Maintains packet ordering
+- Calculates available buffer space for framing bit
+
+---
+
+### **Sequence Diagram**
+```
+Sender                            Receiver
+  |------- Packet (seq=0) --------->| 
+  |                                 | Processes packet
+  |<------- ACK(1, framing=0) ------|
+  | (Window expands to 2m-1)        |
+  |--- Packets (seq=1,2,3,4,5,6) -->|
+  |                                 | Buffer fills up
+  |<------- ACK(7, framing=1) ------|
+  | (Window shrinks to 1)           |
+  |------- Packet (seq=7) --------->|
+```
+
+---
+
+### **Key Features**
+1. **Adaptive Congestion Control**:
+   - Automatically reduces transmission rate when receiver buffer fills
+   - Quickly maximizes throughput when buffer space is available
+
+2. **Efficient Buffer Utilization**:
+   - Receiver buffer size = maximum window size (2m-1)
+   - Maintains 1 packet buffer margin for flow control
+
+3. **Cumulative Acknowledgments**:
+   - ACK numbers indicate next expected sequence
+   - Automatically acknowledges all previous packets
+
+4. **Sequence Number Management**:
+   - Uses modulo arithmetic (2^m) for sequence numbers
+   - Handles wrap-around correctly
+
+---
+
+### **Simulation Flow (main())**
+1. Initialize sender/receiver with m=3 (8 sequence numbers)
+2. Load sample data into sender
+3. Simulation loop:
+   - Receiver processes its buffer (emulates application consumption)
+   - Sender transmits packets within current window
+   - Receiver generates ACKs with framing bit
+   - Sender adjusts window size based on ACKs
+
+---
+
+### **Performance Optimization**
+- **Rapid Adaptation**: Immediate window size changes based on receiver feedback
+- **Prevent Overflow**: Framing bit triggers window reduction before buffer overflows
+- **Full Bandwidth Utilization**: Maximizes window size (2m-1) when possible
+
+This implementation provides a foundation that can be extended with:
+- Retransmission mechanisms for lost packets
+- Error detection using checksums
+- Actual network communication layers
+- Threading for concurrent processing
+- More sophisticated congestion control algorithms
