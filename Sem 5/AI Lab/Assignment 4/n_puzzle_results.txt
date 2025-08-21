@@ -1,0 +1,151 @@
+--- Initial State ---
+1 2 3
+5 6 0
+7 8 4
+
+--- Goal State ---
+1 2 3
+5 8 6
+0 7 4
+
+
+--- Solution Path ---
+Step 0: Initial State
+1 2 3
+5 6 0
+7 8 4
+
+Step 1: Move Up
+1 2 0
+5 6 3
+7 8 4
+
+Step 2: Move Left
+1 0 2
+5 6 3
+7 8 4
+
+Step 3: Move Down
+1 6 2
+5 0 3
+7 8 4
+
+Step 4: Move Down
+1 6 2
+5 8 3
+7 0 4
+
+Step 5: Move Left
+1 6 2
+5 8 3
+0 7 4
+
+Step 6: Move Up
+1 6 2
+0 8 3
+5 7 4
+
+Step 7: Move Up
+0 6 2
+1 8 3
+5 7 4
+
+Step 8: Move Right
+6 0 2
+1 8 3
+5 7 4
+
+Step 9: Move Right
+6 2 0
+1 8 3
+5 7 4
+
+Step 10: Move Down
+6 2 3
+1 8 0
+5 7 4
+
+Step 11: Move Down
+6 2 3
+1 8 4
+5 7 0
+
+Step 12: Move Left
+6 2 3
+1 8 4
+5 0 7
+
+Step 13: Move Left
+6 2 3
+1 8 4
+0 5 7
+
+Step 14: Move Up
+6 2 3
+0 8 4
+1 5 7
+
+Step 15: Move Up
+0 2 3
+6 8 4
+1 5 7
+
+Step 16: Move Right
+2 0 3
+6 8 4
+1 5 7
+
+Step 17: Move Down
+2 8 3
+6 0 4
+1 5 7
+
+Step 18: Move Left
+2 8 3
+0 6 4
+1 5 7
+
+Step 19: Move Down
+2 8 3
+1 6 4
+0 5 7
+
+Step 20: Move Right
+2 8 3
+1 6 4
+5 0 7
+
+Step 21: Move Right
+2 8 3
+1 6 4
+5 7 0
+
+Step 22: Move Up
+2 8 3
+1 6 0
+5 7 4
+
+Step 23: Move Left
+2 8 3
+1 0 6
+5 7 4
+
+Step 24: Move Up
+2 0 3
+1 8 6
+5 7 4
+
+Step 25: Move Left
+0 2 3
+1 8 6
+5 7 4
+
+Step 26: Move Down
+1 2 3
+0 8 6
+5 7 4
+
+Step 27: Move Down
+1 2 3
+5 8 6
+0 7 4
